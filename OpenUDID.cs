@@ -79,8 +79,6 @@ namespace Teraport.Common.IOS
         // Retrieve an NSDictionary from a pasteboard of a given type
         protected NSMutableDictionary getDictFromPasteboard(UIPasteboard pboard)
         {
-            NSDictionary result = null;
-
             var item = pboard.DataForPasteboardType(kOpenUDIDDomain);
             NSObject pbItem = null;
 
@@ -96,11 +94,10 @@ namespace Teraport.Common.IOS
                 }
             }
 
-            if (result != null && result is NSDictionary)
-                return NSMutableDictionary.FromDictionary(result);
+            if (pbItem != null && pbItem is NSDictionary)
+                return NSMutableDictionary.FromDictionary((NSDictionary)pbItem);
             else
                 return null;
-
         }
 
         // Private method to create and return a new OpenUDID
